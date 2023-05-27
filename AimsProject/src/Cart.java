@@ -1,4 +1,4 @@
-import java.util.Arrays;
+
 
 public class Cart {
 	
@@ -15,6 +15,26 @@ public class Cart {
 			System.out.println("The cart is almost full");
 		}
 	}
+
+	public void addDigitalVideoDisc(DigitalVideoDisc[] dvdList) {
+		for (DigitalVideoDisc disc : dvdList) {
+			addDigitalVideoDisc(disc);
+		}
+	}
+	
+	/*A method addDigitalVideoDisc which allows to pass an arbitrary number of arguments for DVD
+	 public void addDigitalVideoDisc(DigitalVideoDisc[] dvdList) {
+		for (DigitalVideoDisc disc : dvdList) {
+			addDigitalVideoDisc(disc);
+		}
+	}
+	*/
+	
+	
+	/* I personally prefer using the variable-length argument 
+	syntax in this case, as it provides more flexibility and simplicity. 
+	However, if you prefer a more explicit and structured approach, 
+	using an array parameter may be a better choice.*/
 	
 	public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
 		for (int i = 0; i < qtyOrdered; i++) {

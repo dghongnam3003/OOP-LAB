@@ -62,4 +62,7 @@ public class DigitalVideoDisc {
 	public int getId() {
 		return id;
 	}
+	public String toString() {
+		return "DVD - " + this.title + " - " + this.category + " - " + this.director + " - " + this.length + ": " + this.cost + " $";
+	}
 }

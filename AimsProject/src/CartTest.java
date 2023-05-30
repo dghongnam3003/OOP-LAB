@@ -15,5 +15,10 @@ public class CartTest {
 		cart.addDigitalVideoDisc(dvd3);
 		
 		cart.print();
+		
+		
+		cart.searchById(4);
+		cart.searchByTitle("dm");
+		
 	}
 }

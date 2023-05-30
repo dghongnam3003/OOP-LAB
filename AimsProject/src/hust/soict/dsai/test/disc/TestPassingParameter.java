@@ -1,5 +1,6 @@
 package hust.soict.dsai.test.disc;
 import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class TestPassingParameter {
 	public static void main(String[] args) {
@@ -15,11 +16,17 @@ public class TestPassingParameter {
 		System.out.println("jungle dvd title: " + jungleDVD.getTitle());
 	}
 	
-	public static void swap(Object o1, Object o2) {
+	/*public static void swap(Object o1, Object o2) {
 		Object tmp = o1;
 		o1 = o2;
 		o2 = tmp;
-	}
+	}*/
+	
+	public static void swap(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
+        AtomicReference<DigitalVideoDisc> temp = new AtomicReference<>(dvd1);
+        dvd1 = dvd2;
+        dvd2 = temp.get();
+    }
 	
 	public static void changeTitle(DigitalVideoDisc dvd, String title) {
 		String oldTitle = dvd.getTitle();
@@ -29,11 +36,3 @@ public class TestPassingParameter {
 }
 
 
-/*
- - The title of the objects jungleDVD and cinderellaDVD remains the same after the call to swap(jungleDVD, cinderellaDVD) because Java passes arguments to methods by value.
-
-In the swap method, the values of o1 and o2 are swapped using a temporary variable tmp. However, the swapping operation only modifies the local copies of the references o1 and o2 within the swap method. These local copies are distinct from the original references jungleDVD and cinderellaDVD in the main method.
-
-Therefore, the swap operation performed inside the swap method does not affect the original references jungleDVD and cinderellaDVD in the main method.
-- After the call to changeTitle(jungleDVD, cinderellaDVD.getTitle()), the title of jungleDVD appears to be changed because the changeTitle method modifies the dvd object's title by using getter and setter
-*/

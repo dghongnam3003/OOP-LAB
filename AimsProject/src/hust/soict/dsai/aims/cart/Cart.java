@@ -31,12 +31,6 @@ public class Cart {
 	}
 	*/
 	
-	
-	/* I personally prefer using the variable-length argument 
-	syntax in this case, as it provides more flexibility and simplicity. 
-	However, if you prefer a more explicit and structured approach, 
-	using an array parameter may be a better choice.*/
-	
 	public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
 		for (int i = 0; i < qtyOrdered; i++) {
 			if (itemsOrdered[i] == disc) {

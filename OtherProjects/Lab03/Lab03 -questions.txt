@@ -1,0 +1,18 @@
+2.1.
+- Compare to an array parameter. What do you prefer in this case?
+=>  I personally prefer using the variable-length argument 
+	syntax in this case, as it provides more flexibility and simplicity. 
+	However, if you prefer a more explicit and structured approach, 
+	using an array parameter may be a better choice.
+
+3.
+ ●	After the call of swap(jungleDVD, cinderellaDVD) why does the title of these two objects still remain?
+=> - The title of the objects jungleDVD and cinderellaDVD remains the same after the call to swap(jungleDVD, cinderellaDVD) because Java passes arguments to methods by value.
+
+In the swap method, the values of o1 and o2 are swapped using a temporary variable tmp. However, the swapping operation only modifies the local copies of the references o1 and o2 within the swap method. These local copies are distinct from the original references jungleDVD and cinderellaDVD in the main method.
+
+Therefore, the swap operation performed inside the swap method does not affect the original references jungleDVD and cinderellaDVD in the main method.
+
+●	After the call of changeTitle(jungleDVD, cinderellaDVD.getTitle()) why is the title of the JungleDVD changed?
+=> After the call to changeTitle(jungleDVD, cinderellaDVD.getTitle()), the title of jungleDVD appears to be changed because the changeTitle method modifies the dvd object's title by using getter and setter.
+

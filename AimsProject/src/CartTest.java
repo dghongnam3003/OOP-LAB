@@ -18,7 +18,7 @@ public class CartTest {
 		
 		
 		cart.searchById(4);
-		cart.searchByTitle("dm");
+		cart.searchByTitle("Film");
 		
 	}
 }

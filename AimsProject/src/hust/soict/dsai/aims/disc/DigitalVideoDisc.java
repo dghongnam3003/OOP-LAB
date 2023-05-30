@@ -1,3 +1,4 @@
+package hust.soict.dsai.aims.disc;
 
 public class DigitalVideoDisc {
 	public DigitalVideoDisc(String title, String category, float cost) {

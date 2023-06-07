@@ -1,54 +1,21 @@
 package hust.soict.dsai.aims.cart;
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+import hust.soict.dsai.aims.media.DigitalVideoDisc;
+import hust.soict.dsai.aims.media.Media;
+
+import java.util.List;
+import java.util.ArrayList;
 
 public class Cart {
 	
 	public static final int MAX_NUMBERS_ORDERED = 20;
-	private DigitalVideoDisc itemsOrdered[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
-	private int qtyOrdered = 0;
-	
-	public void addDigitalVideoDisc(DigitalVideoDisc disc) {
-		if (qtyOrdered < itemsOrdered.length) {
-			itemsOrdered[qtyOrdered++] = disc;
-			System.out.println("The disc has been added");
-		}
-		else {
-			System.out.println("The cart is almost full");
-		}
-	}
-
-	public void addDigitalVideoDisc(DigitalVideoDisc[] dvdList) {
-		for (DigitalVideoDisc disc : dvdList) {
-			addDigitalVideoDisc(disc);
-		}
-	}
-	
-	/*A method addDigitalVideoDisc which allows to pass an arbitrary number of arguments for DVD
-	 public void addDigitalVideoDisc(DigitalVideoDisc[] dvdList) {
-		for (DigitalVideoDisc disc : dvdList) {
-			addDigitalVideoDisc(disc);
-		}
-	}
-	*/
-	
-	public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
-		for (int i = 0; i < qtyOrdered; i++) {
-			if (itemsOrdered[i] == disc) {
-				for (int j = i; j < qtyOrdered; j++) {
-					itemsOrdered[j] = itemsOrdered[j+1];
-				}
-				itemsOrdered[--qtyOrdered] = null;
-				return;
-			}
-		}
-	}
+	private List<Media> itemsOrdered = new ArrayList<Media>();
 	
 	public void print() {
 		System.out.println("***********************CART***********************");
 		System.out.println("Ordered Items:");
 		float totalCost = 0;
-		for (int i = 0; i < qtyOrdered; i++) {
-			DigitalVideoDisc dvd = itemsOrdered[i];
+		for (int i = 0; i < itemsOrdered.size(); i++) {
+			Media dvd = itemsOrdered.get(i);
 			System.out.println((i+1) + ". " + dvd.toString());
 			totalCost += dvd.getCost();
 		}
@@ -58,7 +25,7 @@ public class Cart {
 	
 	public void searchById(int idToSearch) {
 		boolean idMatch = false;
-		for (DigitalVideoDisc dvd : itemsOrdered) {
+		for (Media dvd : itemsOrdered) {
 			if (dvd != null) {
 				if (dvd.getId() == idToSearch) {
 					System.out.println(dvd.toString());
@@ -77,7 +44,7 @@ public class Cart {
 	
 	public void searchByTitle(String titleToSearch) {
         boolean titleMatch = false;
-        for (DigitalVideoDisc dvd : itemsOrdered) {
+        for (Media dvd : itemsOrdered) {
         	if (dvd != null ) {
         		if (dvd.isMatch(titleToSearch)) {
                     System.out.println(dvd.toString());
@@ -97,8 +64,8 @@ public class Cart {
 	
 	public float totalCost() {
 		float total = 0.0f;
-		for (int i = 0; i < qtyOrdered; i++ ) {
-			total += itemsOrdered[i].getCost();
+		for (int i = 0; i < itemsOrdered.size(); i++ ) {
+			total += itemsOrdered.get(i).getCost();
 		}
 		
 		return total;

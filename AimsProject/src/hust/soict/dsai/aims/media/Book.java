@@ -40,4 +40,8 @@ public class Book extends Media {
 		}
 	}
 
+	@Override
+	public boolean isMatch(String titleToSearch) {
+		return false;
+	}
 }

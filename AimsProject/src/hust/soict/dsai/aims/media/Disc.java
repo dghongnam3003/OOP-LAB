@@ -22,4 +22,9 @@ public class Disc extends Media {
 		return length;
 	}
 
+	@Override
+	public boolean isMatch(String titleToSearch) {
+		return false;
+	}
+
 }

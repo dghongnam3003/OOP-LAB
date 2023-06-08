@@ -43,4 +43,5 @@ public abstract class Media {
 		this.cost = cost;
 	}
 
+	public abstract boolean isMatch(String titleToSearch);
 }

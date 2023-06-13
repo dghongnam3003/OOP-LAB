@@ -5,6 +5,24 @@ import java.util.List;
 
 public class CompactDisc extends Disc implements Playable {
 	
+	public CompactDisc(String director, int length) {
+		super(director, length);
+		// TODO Auto-generated constructor stub
+	}
+	public CompactDisc(List<Track> tracks) {
+		super();
+		this.tracks = tracks;
+	}
+	public CompactDisc(String artist) {
+		super();
+		this.artist = artist;
+	}
+	public CompactDisc(String artist, List<Track> tracks) {
+		super();
+		this.artist = artist;
+		this.tracks = tracks;
+	}
+
 	private String artist;
 	private List<Track> tracks = new ArrayList<Track>();
 	public CompactDisc() {
@@ -12,11 +30,6 @@ public class CompactDisc extends Disc implements Playable {
 	}
 	public String getArtist() {
 		return artist;
-	}
-	public CompactDisc (String artist, List<Track> tracks) {
-		super();
-		this.artist = artist;
-		this.tracks = tracks;
 	}
 	
 	public void addTrack(Track track) {
@@ -46,6 +59,11 @@ public class CompactDisc extends Disc implements Playable {
 			sumLen += tracks.get(i).getLength();
 		}
 		return sumLen;
+	}
+	
+	@Override
+	public String toString() {
+		return "CD - " + this.getTitle() + " - " + this.getCategory() + " - " + this.getLength() + " - " + this.getDirector() + " - " + this.getCost();
 	}
 	
 	public void play() {

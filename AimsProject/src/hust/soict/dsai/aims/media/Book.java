@@ -5,10 +5,21 @@ import java.util.List;
 
 public class Book extends Media {
 	
+	public Book(List<String> authors) {
+		super();
+		this.authors = authors;
+	}
+
 	private List<String> authors = new ArrayList<String>();
 	
 	public Book() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Book(String title, float cost, String category) {
+		this.setCost(cost);
+		this.setTitle(title);
+		this.setCategory(category);
 	}
 
 	public List<String> getAuthors() {
@@ -38,6 +49,10 @@ public class Book extends Media {
 				System.out.println("The author is not in the list");
 			}
 		}
+	}
+	
+	public String toString() {
+		return "Book - " + this.getTitle() + " - " + this.getCategory() + " - " + this.getCost() + " - " + this.authors; 
 	}
 
 	@Override

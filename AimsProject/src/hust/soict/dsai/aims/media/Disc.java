@@ -21,6 +21,10 @@ public class Disc extends Media {
 	public int getLength() {
 		return length;
 	}
+	
+	public String toString() {
+		return null;
+	}
 
 	@Override
 	public boolean isMatch(String titleToSearch) {

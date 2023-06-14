@@ -87,4 +87,8 @@ public class Cart {
 		
 		return total;
 	}
+
+	public ArrayList<Media> getItemsOrdered() {
+		return itemsOrdered;
+	}
 }

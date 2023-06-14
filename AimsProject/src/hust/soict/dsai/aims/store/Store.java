@@ -43,7 +43,7 @@ public class Store {
 	
 	public void filterCartById(int id) {
         ArrayList<Media> filteredList = new ArrayList<>();
-        for (Media media : itemsInStore) {
+        for (Media media : cart.getItemsOrdered()) {
             if (media.getId() == id) {
                 filteredList.add(media);
             }
@@ -53,7 +53,7 @@ public class Store {
 	
 	public void filterCartByTitle(String title) {
         ArrayList<Media> filteredList = new ArrayList<>();
-        for (Media media : itemsInStore) {
+        for (Media media : cart.getItemsOrdered()) {
             if (media.getTitle().equalsIgnoreCase(title)) {
                 filteredList.add(media);
             }
@@ -75,12 +75,12 @@ public class Store {
     }
 	
 	public void sortCartByTitle() {
-        Collections.sort(itemsInStore, Media.COMPARE_BY_TITLE_COST);
+        Collections.sort(cart.getItemsOrdered(), Media.COMPARE_BY_TITLE_COST);
         System.out.println("Medias in cart have been sorted by title.");
     }
 	
 	 public void sortCartByCost() {
-	        Collections.sort(itemsInStore, Media.COMPARE_BY_COST_TITLE);
+	        Collections.sort(cart.getItemsOrdered(), Media.COMPARE_BY_COST_TITLE);
 	        System.out.println("Medias in cart have been sorted by cost.");
 	 }
 	 
@@ -98,7 +98,7 @@ public class Store {
 	 }
 	 
 	 public void removeFromCart(Media media) {
-	        itemsInStore.remove(media);
+	        cart.removeMedia(media);
 	 }
 	 
 	 public void displayCart() {

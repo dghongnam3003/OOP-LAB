@@ -2,6 +2,8 @@ package hust.soict.dsai.aims.cart;
 
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 public class Cart {
 	
 	public static final int MAX_NUMBERS_ORDERED = 20;
-	private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
+	private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
 
 	public void addMedia(Media dvd) {
 		if (itemsOrdered.size() < MAX_NUMBERS_ORDERED) {
@@ -88,7 +90,7 @@ public class Cart {
 		return total;
 	}
 
-	public ArrayList<Media> getItemsOrdered() {
+	public ObservableList<Media> getItemsOrdered() {
 		return itemsOrdered;
 	}
 }

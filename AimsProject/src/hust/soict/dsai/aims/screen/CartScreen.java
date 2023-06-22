@@ -5,11 +5,12 @@ import java.io.IOException;
 import javax.swing.JFrame;
 
 import javafx.application.Platform;
-import javafx.embed.swing.*;
+import javafx.embed.swing.JFXPanel;
 import javafx.fxml.*;
 import javafx.scene.*;
 
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.media.DigitalVideoDisc;
 
 public class CartScreen extends JFrame {
 	private Cart cart;
@@ -29,7 +30,7 @@ public class CartScreen extends JFrame {
 			public void run() {
 				try {
 					FXMLLoader loader = new FXMLLoader(getClass()
-							.getResource("/screen/cart.fxml"));
+							.getResource("/hust/soict/dsai/aims/screen/cart.fxml"));
 					CartScreenController controller = new CartScreenController(cart);
 					loader.setController(controller);
 					Parent root = loader.load();
@@ -39,5 +40,22 @@ public class CartScreen extends JFrame {
 				}
 			}
 		});
+	}
+	
+	public static void main(String[] args) {
+		//create a new cart
+		Cart cart = new Cart();
+		
+		//Create a new dvd objects and add them to the cart
+		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
+		cart.addMedia(dvd1);
+		
+		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 87, 24.95f);
+		cart.addMedia(dvd2);
+		
+		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin", "Animation", 18.99f);
+		cart.addMedia(dvd3);
+		
+		new CartScreen(cart);
 	}
 }	

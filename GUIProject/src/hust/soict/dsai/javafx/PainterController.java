@@ -1,68 +1,48 @@
 package hust.soict.dsai.javafx;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.RadioButton;
+import javafx.event.*;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
+import javafx.fxml.FXML;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 public class PainterController {
-
-	@FXML
-	private RadioButton penButton;
-
+	
 	@FXML
 	private ToggleGroup identical;
 
-	@FXML
-	private VBox drawingAreaPane;
-
-	@FXML
-	private RadioButton eraserButton;
-
-    private Paint currentInkColor;
 
     @FXML
-    void initialize() {
-        // Set the default ink color to black
-        currentInkColor = Color.BLACK;
-        
-        // Add a listener to the toolToggleGroup to handle ink color changes
-        identical.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                String selectedTool = ((RadioButton) newValue).getId();
-                if (selectedTool.equals("penButton")) {
-                    currentInkColor = Color.BLACK;
-                } else if (selectedTool.equals("eraserButton")) {
-                    currentInkColor = drawingAreaPane.getBackground().getFills().get(0).getFill();
-                }
-            }
-        });
-    }
+    private Pane drawingAreaPane;
+    
+    private Color currentInk;
+    private int mouseSize;
 
     @FXML
     void drawingAreaMouseDragged(MouseEvent event) {
-        Circle newCircle = new Circle(event.getX(), event.getY(), 4);
-        newCircle.setFill(currentInkColor);
-        drawingAreaPane.getChildren().add(newCircle);
-    }
-
-    @FXML
-    void clearButtonPressed(ActionEvent event) {
-        drawingAreaPane.getChildren().clear();
+    	Circle newCircle = new Circle(event.getX(),
+    			event.getY(), mouseSize, currentInk);
+    	drawingAreaPane.getChildren().add(newCircle);
     }
     
     @FXML
     void penButtonPressed(ActionEvent event) {
-        currentInkColor = Color.BLACK;
+    	mouseSize = 4;
+    	currentInk = Color.BLACK;
     }
-    
+
     @FXML
     void eraserButtonPressed(ActionEvent event) {
-        currentInkColor = drawingAreaPane.getBackground().getFills().get(0).getFill();
+    	mouseSize = 10;
+    	currentInk = Color.WHITE;
     }
+
+    @FXML
+    void clearButtonPressed(ActionEvent event) {
+    	drawingAreaPane.getChildren().clear();
+    }
+
 }

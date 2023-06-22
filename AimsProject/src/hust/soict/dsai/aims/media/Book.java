@@ -16,7 +16,7 @@ public class Book extends Media {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Book(String title, float cost, String category) {
+	public Book(String title, String category, float cost) {
 		this.setCost(cost);
 		this.setTitle(title);
 		this.setCategory(category);

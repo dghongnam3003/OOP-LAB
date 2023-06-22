@@ -1,8 +1,8 @@
 package hust.soict.dsai.javafx;
 
+import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import javafx.application.Application;
 import javafx.scene.*;
 
 public class Painter extends Application {
@@ -17,6 +17,7 @@ public class Painter extends Application {
 		stage.setScene(scene);
 		stage.show();
 	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}

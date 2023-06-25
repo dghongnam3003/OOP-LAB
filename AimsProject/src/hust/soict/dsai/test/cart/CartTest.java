@@ -1,6 +1,6 @@
 package hust.soict.dsai.test.cart;
 import hust.soict.dsai.aims.cart.Cart;
-import hust.soict.dsai.aims.media.DigitalVideoDisc;
+import hust.soict.dsai.aims.media.*;
 
 public class CartTest {
 	public static void main(String[] args) {
@@ -17,11 +17,14 @@ public class CartTest {
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin", "Animation", 18.99f);
 		cart.addMedia(dvd3);
 		
+		CompactDisc cd = new CompactDisc("tacgia", 4);
+		cart.addMedia(cd);
+
 		cart.print();
 		
 		
 		cart.searchById(4);
-		cart.searchByTitle("Film");
+		cart.searchByTitle("Aladin");
 		
 	}
 }

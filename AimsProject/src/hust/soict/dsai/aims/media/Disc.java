@@ -13,7 +13,10 @@ public class Disc extends Media {
 		this.length = length;
 		this.director = director;
 	}
-
+	public Disc(String title, String category, Float cost){
+		super(title, category, cost);
+	}
+	
 	public String getDirector() {
 		return director;
 	}
@@ -29,6 +32,12 @@ public class Disc extends Media {
 	@Override
 	public boolean isMatch(String titleToSearch) {
 		return false;
+	}
+	public void setDirector(String director) {
+		this.director = director;
+	}
+	public void setLength(int length) {
+		this.length = length;
 	}
 
 }

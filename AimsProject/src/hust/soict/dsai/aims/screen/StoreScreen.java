@@ -1,33 +1,17 @@
 package hust.soict.dsai.aims.screen;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.util.ArrayList;
-
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
+import java.awt.*;
+import java.util.*;
+import javax.swing.*;
+import java.awt.event.*;
 
 import hust.soict.dsai.aims.cart.Cart;
-import hust.soict.dsai.aims.media.Book;
-import hust.soict.dsai.aims.media.CompactDisc;
-import hust.soict.dsai.aims.media.DigitalVideoDisc;
-import hust.soict.dsai.aims.media.Media;
+import hust.soict.dsai.aims.media.*;
 import hust.soict.dsai.aims.store.Store;
 
 public class StoreScreen extends JFrame {
 	private static Store store = new Store();
+	private static Cart cart = new Cart();
 	
 	public StoreScreen(Store store) {
 		StoreScreen.store = store;
@@ -55,19 +39,57 @@ public class StoreScreen extends JFrame {
 		JMenu menu = new JMenu("Options");
 		
 		JMenu smUpdateStore = new JMenu("Update Store");
-		smUpdateStore.add(new JMenuItem("Add Book"));
-		smUpdateStore.add(new JMenuItem("Add CD"));
-		smUpdateStore.add(new JMenuItem("Add DVD"));
+		JMenuItem smAddBook = new JMenuItem("Add Book");
+		JMenuItem smAddCD = new JMenuItem("Add CD");
+		JMenuItem smAddDVD = new JMenuItem("Add DVD");
+		smUpdateStore.add(smAddBook);
+		smUpdateStore.add(smAddCD);
+		smUpdateStore.add(smAddDVD);
+		
+		smAddBook.addActionListener(new btnMenuListener());
+		smAddCD.addActionListener(new btnMenuListener());
+		smAddDVD.addActionListener(new btnMenuListener());
 		
 		menu.add(smUpdateStore);
-		menu.add(new JMenuItem("View Store"));
-		menu.add(new JMenuItem("View cart"));
+
+		JMenuItem viewStoreMenu = new JMenuItem("View Store");
+		JMenuItem viewCartMenu = new JMenuItem("View Cart");
+		menu.add(viewStoreMenu);
+		menu.add(viewCartMenu);
+		
+		viewStoreMenu.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new StoreScreen(store);
+			}
+		});
+		
+		viewCartMenu.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CartScreen(cart);
+			}
+		});
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
 		menuBar.add(menu);
 		
 		return menuBar;
+	}
+	
+	private class btnMenuListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String command = e.getActionCommand();
+			if (command.equals("Add Book")) {
+				new AddBookToStoreScreen(store);
+			} else if (command.equals("Add CD")) {
+				new AddCDToStoreScreen(store);
+			} else if (command.equals("Add DVD")) {
+				new AddDVDToStoreScreen(store);
+			}
+		}
 	}
 	
 	JPanel createHeader() {
@@ -119,11 +141,11 @@ public class StoreScreen extends JFrame {
         DigitalVideoDisc dvd3 = new DigitalVideoDisc("The ShawShank Redemption", "Drama", "Frank Darabont", 142, 9.99f);
         store.addMedia(dvd3);
 
-        CompactDisc cd1 = new CompactDisc("Thriller", "Pop", 9.99f, null, 42, "Michael Jackson");
+        CompactDisc cd1 = new CompactDisc("Thriller", "Pop", 9.99f, null, "Michael Jackson");
         store.addMedia(cd1);
-        CompactDisc cd2 = new CompactDisc("Back in Black", "Rock", 11.99f, null, 43, "AC/DC");
+        CompactDisc cd2 = new CompactDisc("Back in Black", "Rock", 11.99f, null, "AC/DC");
         store.addMedia(cd2);
-        CompactDisc cd3 = new CompactDisc("21", "Pop", 12.99f, null, 48, "Adele");
+        CompactDisc cd3 = new CompactDisc("21", "Pop", 12.99f, null, "Adele");
         store.addMedia(cd3);
     }
     public static void main(String[] args) {

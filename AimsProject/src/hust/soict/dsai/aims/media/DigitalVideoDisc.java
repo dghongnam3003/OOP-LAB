@@ -3,14 +3,14 @@ package hust.soict.dsai.aims.media;
 public class DigitalVideoDisc extends Disc implements Playable {
 	public DigitalVideoDisc(String title, String category, float cost) {
 		super();
-		this.setId(++nbDigitalVideoDiscs);
+		
 		this.setTitle(title);
 		this.setCategory(category);
 		this.setCost(cost);
 	}
 	public DigitalVideoDisc(String title) {
 		super();
-		this.setId(++nbDigitalVideoDiscs);
+		
 		this.setTitle(title);
 	}
 	public DigitalVideoDisc(int id) {
@@ -29,7 +29,7 @@ public class DigitalVideoDisc extends Disc implements Playable {
 	}
 	public DigitalVideoDisc(String title, String category, String director, float cost) {
 		super();
-		this.setId(++nbDigitalVideoDiscs);
+		
 		this.setTitle(title);
 		this.setCategory(category);
 		this.setCost(cost);
@@ -37,7 +37,7 @@ public class DigitalVideoDisc extends Disc implements Playable {
 	}
 	public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
 		super();
-		this.setId(++nbDigitalVideoDiscs);
+		
 		this.setTitle(title);
 		this.setCategory(category);
 		this.setCost(cost);
@@ -55,5 +55,14 @@ public class DigitalVideoDisc extends Disc implements Playable {
 	public void play() {
 		System.out.println("Playing DVD: " + this.getTitle());
 		System.out.println("DVD length: " + this.getLength());
+	}
+	
+	public String playGUI() {
+		if (this.getLength() > 0) {
+			//return "<html>Playing DVD:...<html"
+			return "Playing DVD: " + this.getTitle() + "\n" + "DVD length: " + this.getLength();
+		} else {
+			return "Cannot play this DVD";
+		}
 	}
 }

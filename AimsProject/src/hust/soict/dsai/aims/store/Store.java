@@ -5,6 +5,8 @@ import hust.soict.dsai.aims.media.Media;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.naming.LimitExceededException;
+
 public class Store {
 	private ArrayList<Media> itemsInStore = new ArrayList<Media>();
 	private Cart cart;
@@ -93,7 +95,7 @@ public class Store {
 	        return null;
 	 }
 	 
-	 public void addToCart(Media media) {
+	 public void addToCart(Media media) throws LimitExceededException {
 		 cart.addMedia(media);
 	 }
 	 

@@ -2,6 +2,7 @@ package hust.soict.dsai.aims.screen;
 
 import java.io.IOException;
 
+import javax.naming.LimitExceededException;
 import javax.swing.JFrame;
 import java.util.*;
 
@@ -32,7 +33,7 @@ public class CartScreen extends JFrame {
 			public void run() {
 				try {
 					FXMLLoader loader = new FXMLLoader(getClass()
-							.getResource("/hust/soict/dsai/aims/screen/cart.fxml"));
+							.getResource("/hust/soict/dsai/aims/screen/fxml/cart.fxml"));
 					CartScreenController controller = new CartScreenController(cart);
 					loader.setController(controller);
 					Parent root = loader.load();
@@ -44,7 +45,7 @@ public class CartScreen extends JFrame {
 		});
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws LimitExceededException {
 		//create a new cart
 				Cart cart = new Cart();
 				

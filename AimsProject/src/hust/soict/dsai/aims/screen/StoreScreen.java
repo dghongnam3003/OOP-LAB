@@ -2,6 +2,8 @@ package hust.soict.dsai.aims.screen;
 
 import java.awt.*;
 import java.util.*;
+
+import javax.naming.LimitExceededException;
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -100,14 +102,21 @@ public class StoreScreen extends JFrame {
 		title.setFont(new Font(title.getFont().getName(), Font.PLAIN, 50));
 		title.setForeground(Color.CYAN);
 		
-		JButton cart = new JButton("View cart");
-		cart.setPreferredSize(new Dimension(100, 50));
-		cart.setMaximumSize(new Dimension(100, 50));
+		JButton cartButton = new JButton("View cart");
+		cartButton.setPreferredSize(new Dimension(100, 50));
+		cartButton.setMaximumSize(new Dimension(100, 50));
+		
+		cartButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CartScreen(cart);
+			}
+		});
 		
 		header.add(Box.createRigidArea(new Dimension(10, 10)));
 		header.add(title);
 		header.add(Box.createHorizontalGlue());
-		header.add(cart);
+		header.add(cartButton);
 		header.add(Box.createRigidArea(new Dimension(10, 10)));
 		
 		return header;
@@ -119,7 +128,7 @@ public class StoreScreen extends JFrame {
 		
 		ArrayList<Media> mediaInStore = store.getItemsInStore();
 		for (int i = 0; i < mediaInStore.size(); i++) {
-			MediaStore cell = new MediaStore(mediaInStore.get(i));
+			MediaStore cell = new MediaStore(mediaInStore.get(i), cart);
 			center.add(cell);
 		}
 		

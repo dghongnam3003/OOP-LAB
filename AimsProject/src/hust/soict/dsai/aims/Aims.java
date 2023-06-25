@@ -1,5 +1,6 @@
 package hust.soict.dsai.aims;
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
@@ -8,10 +9,12 @@ import hust.soict.dsai.aims.store.Store;
 
 import java.util.Scanner;
 
+import javax.naming.LimitExceededException;
+
 public class Aims {
     private static Store store = new Store();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws LimitExceededException {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -50,7 +53,7 @@ public class Aims {
         System.out.println("Please choose a number: 0-1-2-3");
     }
 
-    public static void viewStore(Scanner scanner) {
+    public static void viewStore(Scanner scanner) throws LimitExceededException {
         store.displayStore();
 
         while (true) {
@@ -92,7 +95,7 @@ public class Aims {
         System.out.println("Please choose a number: 0-1-2-3-4");
     }
 
-    public static void seeMediaDetails(Scanner scanner) {
+    public static void seeMediaDetails(Scanner scanner) throws LimitExceededException {
         System.out.println("Enter the title of the media:");
         String title = scanner.nextLine();
 
@@ -112,7 +115,12 @@ public class Aims {
                         return;
                     case 2:
                         if (media instanceof Playable) {
-                            ((Playable) media).play();
+                            try {
+								((Playable) media).play();
+							} catch (PlayerException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
                         } else {
                             System.out.println("This media cannot be played.");
                         }
@@ -139,7 +147,7 @@ public class Aims {
         System.out.println("Please choose a number: 0-1-2");
     }
 
-    public static void addMediaToCart(Scanner scanner) {
+    public static void addMediaToCart(Scanner scanner) throws LimitExceededException {
         System.out.println("Enter the title of the media:");
         String title = scanner.nextLine();
 
@@ -159,7 +167,12 @@ public class Aims {
         Media media = store.search(title);
         if (media != null) {
             if (media instanceof Playable) {
-                ((Playable) media).play();
+                try {
+					((Playable) media).play();
+				} catch (PlayerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             } else {
                 System.out.println("This media cannot be played.");
             }
@@ -406,7 +419,12 @@ public class Aims {
         Media media = store.searchCart(title);
         if (media != null) {
             if (media instanceof Playable) {
-                ((Playable) media).play();
+                try {
+					((Playable) media).play();
+				} catch (PlayerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             } else {
                 System.out.println("This media cannot be played.");
             }

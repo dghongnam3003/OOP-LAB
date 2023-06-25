@@ -2,22 +2,27 @@ package hust.soict.dsai.aims.cart;
 
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.List;
+
+import javax.naming.LimitExceededException;
+
 import java.util.ArrayList;
 
 public class Cart {
 	
 	public static final int MAX_NUMBERS_ORDERED = 20;
-	private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
+	private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
 
-	public void addMedia(Media dvd) {
+	public void addMedia(Media media) throws LimitExceededException {
 		if (itemsOrdered.size() < MAX_NUMBERS_ORDERED) {
-			itemsOrdered.add(dvd);
-			System.out.println("The disc has been added");
+			itemsOrdered.add(media);
+			System.out.println("The media has been added");
 		}
 		else {
-			System.out.println("The cart is full");
+			throw new LimitExceededException("ERROR: The number of " + "media has reached its limit");
 		}
 	}
 
@@ -33,7 +38,7 @@ public class Cart {
 		float totalCost = 0;
 		for (int i = 0; i < itemsOrdered.size(); i++) {
 			Media dvd = itemsOrdered.get(i);
-			System.out.println((i+1) + ". " + dvd.toString());
+			System.out.println(dvd.getId() + ". " + dvd.toString());
 			totalCost += dvd.getCost();
 		}
 		System.out.println("Total cost: " + totalCost);
@@ -43,15 +48,10 @@ public class Cart {
 	public void searchById(int idToSearch) {
 		boolean idMatch = false;
 		for (Media dvd : itemsOrdered) {
-			if (dvd != null) {
-				if (dvd.getId() == idToSearch) {
-					System.out.println(dvd.toString());
-					idMatch = true;
-					break;
-				}
-				else {
-					break;
-				}
+			if (dvd.getId() == idToSearch) {
+			System.out.println(dvd.toString());
+			idMatch = true;
+			break;
 			}
 		}
 		if (idMatch == false) {
@@ -62,15 +62,10 @@ public class Cart {
 	public void searchByTitle(String titleToSearch) {
         boolean titleMatch = false;
         for (Media dvd : itemsOrdered) {
-        	if (dvd != null ) {
-        		if (dvd.isMatch(titleToSearch)) {
+        		if (dvd.getTitle().equals(titleToSearch)) {
                     System.out.println(dvd.toString());
                     titleMatch = true;
                     break;
-                }
-        		else {
-        			break;
-        		}
         	}
             
         }
@@ -86,5 +81,13 @@ public class Cart {
 		}
 		
 		return total;
+	}
+	
+	public void placeOrder() {
+		itemsOrdered.clear();
+	}
+
+	public ObservableList<Media> getItemsOrdered() {
+		return itemsOrdered;
 	}
 }

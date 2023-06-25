@@ -3,7 +3,16 @@ package hust.soict.dsai.aims.media;
 import java.util.Comparator;
 
 public abstract class Media {
+
+	public Media(String title, String category, float cost) {
+		super();
+		this.id = nbMedias++;
+		this.title = title;
+		this.category = category;
+		this.cost = cost;
+	}
 	
+	private static int nbMedias = 1;
 	private int id;
 	private String title;
 	private String category;
@@ -12,6 +21,8 @@ public abstract class Media {
 	public static final Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
 	
 	public Media() {
+		super();
+		this.id = nbMedias++;
 		// TODO Auto-generated constructor stub
 	}
 
